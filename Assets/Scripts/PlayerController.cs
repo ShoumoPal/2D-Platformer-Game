@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    public ScoreController scoreController;
     public Animator anim;
     public float speed;
     public float jump;
@@ -29,6 +30,11 @@ public class PlayerController : MonoBehaviour
         
         PlayMovementAnimation(horizontal, vertical);
         PlayerMovement(horizontal, vertical); 
+    }
+    public void PickUpKey()
+    {
+        //Key pickup logic
+        scoreController.IncreaseScore(10);
     }
     void Die()
     {
