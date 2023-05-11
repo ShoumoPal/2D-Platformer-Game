@@ -45,7 +45,7 @@ public class EnemyController : MonoBehaviour
                 shouldFlip = true;
             }      
         }
-        else if(hitX == true) //Hit a wall
+        else if(hitX == true && hitX.collider.tag != "Enemy") //Hit a wall or object
         {
             Move(false);
             timer += Time.deltaTime;
