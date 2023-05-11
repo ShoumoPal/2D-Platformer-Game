@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public float speed;
     public float jump;
+    public int lives;
     private Rigidbody2D playerRb;
     private bool isGrounded;
     public float deathHeight;
@@ -94,8 +95,15 @@ public class PlayerController : MonoBehaviour
 
     public void KillPlayer()
     {
-        Debug.Log("Player is killed..");
-        SceneManager.LoadScene(0);
+        if(lives == 0)
+        {
+            Debug.Log("Player is killed..");
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            lives--;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
