@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public ScoreController scoreController;
+    public GameOverController gameOverController;
     public Animator anim;
     public float speed;
     public float jump;
@@ -38,8 +39,10 @@ public class PlayerController : MonoBehaviour
         //Key pickup logic
         scoreController.IncreaseScore(10);
     }
-    void Die()
+    void Die() // Just for debug message when falling off platform
     {
+        lives = 0;
+        KillPlayer();
         Debug.Log("Player has died...");
     }
     public void PlayMovementAnimation(float horizontal, float vertical)
@@ -97,8 +100,10 @@ public class PlayerController : MonoBehaviour
     {
         if(lives == 0)
         {
+            anim.SetTrigger("isDead");
             Debug.Log("Player is killed..");
-            SceneManager.LoadScene(0);
+            gameOverController.PlayerHasDied();
+            this.enabled = false;
         }
         else
         {
@@ -107,6 +112,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Collided", collision.gameObject);
         //Grounded logic
         if (collision.gameObject.tag == "Ground")
         {
