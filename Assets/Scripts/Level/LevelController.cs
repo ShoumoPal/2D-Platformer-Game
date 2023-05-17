@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour
         if(collision.gameObject.GetComponent<PlayerController>() != null)
         {
             Debug.Log("Level completed!");
+            LevelManager.Instance.MarkCurrentLevelComplete();
         }
     }
 }
