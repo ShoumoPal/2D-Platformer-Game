@@ -112,7 +112,6 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collided", collision.gameObject);
         //Grounded logic
         if (collision.gameObject.tag == "Ground")
         {
