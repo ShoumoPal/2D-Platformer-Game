@@ -16,10 +16,13 @@ public class LevelCompleteMenu : MonoBehaviour
     }
     void OpenMainMenu()
     {
+        SoundManager.Instance.Play(Sounds.ButtonClick);
+        SoundManager.Instance.StopBGMusic();
         SceneManager.LoadScene(0);
     }
     void LoadNextLevel()
     {
+        SoundManager.Instance.Play(Sounds.ButtonClick);
         LevelManager.Instance.LoadNextScene();
     }
 }

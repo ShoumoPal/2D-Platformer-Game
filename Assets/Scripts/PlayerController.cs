@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public void PickUpKey()
     {
         //Key pickup logic
+        SoundManager.Instance.Play(Sounds.Pickup);
         scoreController.IncreaseScore(10);
     }
     void Die() // Just for debug message when falling off platform
@@ -62,11 +63,21 @@ public class PlayerController : MonoBehaviour
         Vector3 scale = transform.localScale;
         if (horizontal < 0)
         {
+            if (!SoundManager.Instance.isPlayingFootstep() && isGrounded)
+                SoundManager.Instance.PlayFootstep();
+
             scale.x = -1f * Mathf.Abs(horizontal);
         }
         else if (horizontal > 0)
         {
+            if(!SoundManager.Instance.isPlayingFootstep() && isGrounded)
+                SoundManager.Instance.PlayFootstep();
+
             scale.x = Mathf.Abs(horizontal);
+        }
+        else
+        {
+            SoundManager.Instance.StopFootstep();
         }
         transform.localScale = scale;
 
@@ -100,6 +111,7 @@ public class PlayerController : MonoBehaviour
     {
         if(lives == 0)
         {
+            SoundManager.Instance.PlayMusic(Sounds.DeathMusic);
             anim.SetTrigger("isDead");
             Debug.Log("Player is killed..");
             gameOverController.PlayerHasDied();

@@ -21,9 +21,13 @@ public class GameOverController : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.buildIndex);
+        SoundManager.Instance.Play(Sounds.ButtonClick);
+        SoundManager.Instance.PlayBGMusic();
     }
     void QuitLevel()
     {
+        SoundManager.Instance.StopBGMusic();
         SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SoundManager.Instance.Play(Sounds.ButtonClick);
     }
 }

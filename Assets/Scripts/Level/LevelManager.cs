@@ -33,14 +33,22 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void LoadAnyLevel(int levelNumber)
+    {
+        SceneManager.LoadScene(levelNumber);
+    }
     public void LoadNextScene()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         int currentSceneIndex = Array.FindIndex(levels, level => level == currentScene.name);
         int nextSceneIndex = currentSceneIndex + 1;
-        if (nextSceneIndex <= levels.Length)
+        if (nextSceneIndex < levels.Length)
         {
             SceneManager.LoadScene(nextSceneIndex + 1);
+        }
+        else
+        {
+            Debug.Log("All levels completed!");
         }
     }
     public void MarkCurrentLevelComplete()
