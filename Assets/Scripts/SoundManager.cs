@@ -25,9 +25,9 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void PlayBGMusic()
+    public void PlayBGMusic(Sounds sound)
     {
-        PlayMusic(Sounds.Background);
+        PlayMusic(sound);
     }
     public void PlayMusic(Sounds sound)
     {
@@ -54,6 +54,10 @@ public class SoundManager : MonoBehaviour
             Debug.Log("No audio clips detected");
         }
     }
+    public void Stop()
+    {
+        soundsSFX.Stop();
+    }
     public void PlayFootstep()
     {
         soundFootstep.clip = GetSoundClip(Sounds.Footsteps);
@@ -73,7 +77,6 @@ public class SoundManager : MonoBehaviour
         SoundType s = Array.Find(sounds, i => i.soundType == sound);
         return s.volume;
     }
-
     private AudioClip GetSoundClip(Sounds sound)
     {
         SoundType item = Array.Find(sounds, i => i.soundType == sound);
@@ -98,6 +101,7 @@ public enum Sounds
     DisabledButton,
     Pickup,
     Footsteps,
-    DeathMusic
+    DeathMusic,
+    LevelComplete
 }
 
