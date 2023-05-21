@@ -10,6 +10,7 @@ public class GameOverController : MonoBehaviour
     public Button quitButton;
     private void Awake()
     {
+        SoundManager.Instance.PlayBGMusic(Sounds.DeathMusic);
         restartButton.onClick.AddListener(RestartLevel);
         quitButton.onClick.AddListener(QuitLevel);
     }
@@ -22,7 +23,7 @@ public class GameOverController : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.buildIndex);
         SoundManager.Instance.Play(Sounds.ButtonClick);
-        SoundManager.Instance.PlayBGMusic();
+        SoundManager.Instance.PlayBGMusic(Sounds.Background);
     }
     void QuitLevel()
     {

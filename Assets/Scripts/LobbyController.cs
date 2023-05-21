@@ -12,7 +12,7 @@ public class LobbyController : MonoBehaviour
     }
     private void PlayLevel()
     {
-        SoundManager.Instance.PlayBGMusic();
+        SoundManager.Instance.PlayBGMusic(Sounds.Background);
         SoundManager.Instance.Play(Sounds.ButtonClick);
         playButton.gameObject.SetActive(false);
         levelSelectionScreen.SetActive(true);

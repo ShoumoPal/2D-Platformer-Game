@@ -111,7 +111,6 @@ public class PlayerController : MonoBehaviour
     {
         if(lives == 0)
         {
-            SoundManager.Instance.PlayMusic(Sounds.DeathMusic);
             anim.SetTrigger("isDead");
             Debug.Log("Player is killed..");
             gameOverController.PlayerHasDied();

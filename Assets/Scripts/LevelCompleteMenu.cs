@@ -23,6 +23,8 @@ public class LevelCompleteMenu : MonoBehaviour
     void LoadNextLevel()
     {
         SoundManager.Instance.Play(Sounds.ButtonClick);
+        SoundManager.Instance.PlayBGMusic(Sounds.Background);
+        SoundManager.Instance.Stop();
         LevelManager.Instance.LoadNextScene();
     }
 }
